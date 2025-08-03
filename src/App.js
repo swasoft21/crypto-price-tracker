@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import React, { useContext } from 'react';
+import { CryptoContext } from './context/CryptoContext';
+import CoinList from './components/CoinList';
 import './App.css';
 
 function App() {
+  const { theme, setTheme } = useContext(CryptoContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={theme === 'dark' ? 'dark-mode' : 'light-mode'}>
+      <header>
+        <h1>Crypto Tracker</h1>
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+          Toggle Theme
+        </button>
       </header>
+      <CoinList />
     </div>
   );
 }
